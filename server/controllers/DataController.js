@@ -68,7 +68,7 @@ class DataController {
             const resTime = []
             const resTemp = []
 
-            for (let i = 0; i < response.data.hourly.time.length; i++) {
+            for (let i = 0; i < response.data.hourly.time.length; i++) { //! to get data > current datetime
                 if (new Date(response.data.hourly.time[i]) > new Date()) {
                     resTime.push(response.data.hourly.time[i])
                     resTemp.push(response.data.hourly.temperature_2m[i])
@@ -82,7 +82,7 @@ class DataController {
                 temperature_type : response.data.hourly_units.temperature_2m,
                 data : {
                     time : resTime,
-                    temp : resTemp
+                    temperature : resTemp
                 }
             })
 
