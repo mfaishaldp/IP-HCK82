@@ -32,6 +32,8 @@ class UserController {
                     username : username
                 }
             })
+            
+            
 
             if (!data) {
                 throw {name : 'Unauthorized' , message : 'Invalid username/password'}
@@ -44,6 +46,7 @@ class UserController {
             }
 
             const jwtToken = signToken({
+                id : data.id,
                 username : data.username,
                 email : data.email,
             })
