@@ -12,10 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Plan.belongsTo(models.User, {foreignKey : 'UserId'})
+      Plan.belongsTo(models.Status, {foreignKey : 'StatusId'})
     }
   }
   Plan.init({
     UserId: DataTypes.INTEGER,
+    StatusId : DataTypes.INTEGER,
     longitudeLocation: DataTypes.FLOAT,
     latitudeLocation: DataTypes.FLOAT,
     longitudeDestination: DataTypes.FLOAT,

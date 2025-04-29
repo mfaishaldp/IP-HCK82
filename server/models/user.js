@@ -1,4 +1,5 @@
 'use strict';
+const {signToken} = require('../helpers/bcryptjs')
 const {
   Model
 } = require('sequelize');
@@ -16,20 +17,53 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init({
     username: {
-      text : DataTypes.STRING,
-      allowNull : false
+      type : DataTypes.STRING,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : 'Username is required'
+        },
+        notEmpty : {
+          msg : 'Username is required'
+        }
+      }
     },
     email: {
-      text : DataTypes.STRING,
-      allowNull : false
+      type : DataTypes.STRING,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : 'Email is required'
+        },
+        notEmpty : {
+          msg : 'Email is required'
+        },
+        isEmail : {
+          msg : 'Email format is wrong'
+        }
+      },
+      unique : true
     },
     password: {
-      text : DataTypes.STRING,
-      allowNull : false
+      type : DataTypes.STRING,
+      allowNull : false,
+      validate : {
+        notNull : {
+          msg : 'Password is required'
+        },
+        notEmpty : {
+          msg : 'Password is required'
+        }
+      }
     }
   }, {
     sequelize,
     modelName: 'User',
+    hooks : {
+      beforeCreate(instance) {
+        instance.password = signToken(instance.password)
+      }
+    }
   });
   return User;
 };
