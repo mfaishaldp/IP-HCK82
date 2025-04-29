@@ -1,7 +1,8 @@
 const express = require('express')
-const { DataContoller } = require('../controllers/DataController')
+const { DataController } = require('../controllers/DataController')
 const data = express.Router()
 
-data.get('/geo-code', DataContoller.getDataGeoCode)
+data.get('/get-lon-lat', DataController.getDataGeoCode)
+data.get('/get-temperature', DataController.getDataMateo)
 
 module.exports = data
