@@ -1,4 +1,6 @@
 const axios = require('axios')
+const genAi = require('../helpers/genai')
+
 const API_KEY_GEOCODE = process.env.API_KEY_GEOCODE
 
 class DataController {
@@ -85,6 +87,33 @@ class DataController {
                     temperature : resTemp
                 }
             })
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getDataGemini (req,res,next) {
+        try {
+
+            const {temperature} = req.body
+
+            const prompt = `
+            Provide JSON data in the following format:
+            {
+                "top": "string",
+                "bottom": "string",
+                "outerwear": "string",
+                "footwear": "string",
+                "accessories": "string"
+            }
+            The outfit should be appropriate for a temperature of ${temperature} degrees Celsius.
+            Only return the JSON object. Do not include any additional text or responses.
+            `
+
+            const resGemini = await genAi(prompt)
+
+            res.status(200).json(JSON.parse(resGemini.replace("```json","").replace("```","")))
 
         } catch (error) {
             next(error)

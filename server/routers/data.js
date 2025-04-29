@@ -4,5 +4,6 @@ const data = express.Router()
 
 data.get('/get-lon-lat', DataController.getDataGeoCode)
 data.get('/get-temperature', DataController.getDataMateo)
+data.get('/gemini', DataController.getDataGemini)
 
 module.exports = data
