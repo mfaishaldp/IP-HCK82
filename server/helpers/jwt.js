@@ -8,9 +8,9 @@ function signToken(inObjUser) {
         next(error)
     }
 }
-function verifyToken() {
+function verifyToken(inToken) {
     try {
-        
+        return jwt.verify(inToken, JWT_KEY);
     } catch (error) {
         next(error)
     }
