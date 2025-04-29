@@ -30,7 +30,6 @@ class DataContoller {
                 throw {name : 'NotFound', message : 'Location not found'}
             }
             
-            // res.status(200).json(response.data)
             res.status(200).json({
                 place_id : response.data[0].place_id,
                 display_name : response.data[0].display_name,
@@ -39,7 +38,7 @@ class DataContoller {
             })
 
         } catch (error) {
-            res.status(400).json(error)
+            next(error)
         }
     }
 }
