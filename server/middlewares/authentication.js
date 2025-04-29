@@ -12,7 +12,8 @@ async function authentication(req,res,next) {
         const clearToken = bearerToken.slice('Bearer '.length)
         const payload = verifyToken(clearToken)
 
-        const dataUser = User.findByPk(payload.id)
+        const dataUser = await User.findByPk(payload.id)
+
 
         if (!dataUser) {
             throw {name :'Unauthorized', message : 'Invalid Token'}

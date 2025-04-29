@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     timeTemperaturePredicted: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Plan',
+    modelName: 'Plan'
   });
   return Plan;
 };

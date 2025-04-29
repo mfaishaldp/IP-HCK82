@@ -98,6 +98,10 @@ class DataController {
 
             const {temperature} = req.body
 
+            if (!temperature) {
+                throw {name : 'BadRequest', message : 'Temperature is required'}
+            }
+
             const prompt = `
             Provide JSON data in the following format:
             {
@@ -119,7 +123,6 @@ class DataController {
             next(error)
         }
     }
-
 }
 
 module.exports = {

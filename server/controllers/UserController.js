@@ -1,4 +1,4 @@
-const {User} = require('../models/index')
+const {User,Plan} = require('../models/index')
 const {verifyToken} = require('../helpers/bcryptjs')
 const { signToken } = require('../helpers/jwt')
 class UserController {
@@ -55,6 +55,48 @@ class UserController {
                 access_token : jwtToken
             })
 
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async createPlan (req,res,next) {
+        try {
+
+            const {longitudeLocation, latitudeLocation, displayNameLocation, longitudeDestination, latitudeDestination, displayNameDestination, recommendationItems,  timeTemperaturePredicted } = req.body
+
+            if (!longitudeLocation) {
+                throw {name : 'BadRequest', message : 'Longitude Location is required'}
+            }
+            if (!latitudeLocation) {
+                throw {name : 'BadRequest', message : 'Latitude Location is required'}
+            }
+            if (!displayNameLocation) {
+                throw {name : 'BadRequest', message : 'Location Name is required'}
+            }
+            if (!longitudeDestination) {
+                throw {name : 'BadRequest', message : 'Longitude Destination is required'}
+            }
+            if (!latitudeDestination) {
+                throw {name : 'BadRequest', message : 'Latitude Destination is required'}
+            }
+            if (!displayNameDestination) {
+                throw {name : 'BadRequest', message : 'Destination Name is required'}
+            }
+            if (!recommendationItems) {
+                throw {name : 'BadRequest', message : 'Recommendation Item is required'}
+            }
+            if (!timeTemperaturePredicted) {
+                throw {name : 'BadRequest', message : 'Time and Temperature is required'}
+            }
+
+            const newBody = {...req.body}
+            newBody.UserId = req.user.id
+
+            const data = await Plan.create(newBody)
+            
+            res.status(201).json(data)
+            
         } catch (error) {
             next(error)
         }
