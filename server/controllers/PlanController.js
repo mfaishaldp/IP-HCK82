@@ -55,6 +55,29 @@ class PlanController {
         }
     }
 
+    static async delPlanById (req,res,next) {
+        try {
+            const {id : planId} = req.params
+
+            const dataDel = await Plan.findByPk(+planId)
+
+            if (!dataDel) {
+                throw {name : 'NotFound', message : 'Plan not found'}
+            }
+
+            await Plan.destroy({
+                where : {
+                    id : +planId
+                }
+            })
+
+            res.status(200).json(dataDel)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
 }
 
 module.exports = {
