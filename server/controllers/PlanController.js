@@ -78,6 +78,28 @@ class PlanController {
         }
     }
 
+    static async updateStatusByPlanId (req,res,next) {
+        try {
+            const {id : planId} = req.params
+            const {statusId} = req.body
+
+            const data = await Plan.findByPk(+planId)
+            
+            if (!data) {
+                throw {name : 'NotFound', message : 'Plan Not Found'}
+            }
+
+            await data.update({
+                StatusId : statusId
+            })
+
+            res.status(200).json(data)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
 }
 
 module.exports = {
