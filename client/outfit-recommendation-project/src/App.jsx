@@ -3,6 +3,8 @@ import './App.css'
 import Login from './pages/Login'
 import Register from './pages/register'
 import Home from './pages/Home'
+import MainLayout from './layouts/MainLayout'
+import AuthLayout from './layouts/AuthLayout'
 
 function App() {
 
@@ -12,9 +14,16 @@ function App() {
       <BrowserRouter>
         
         <Routes>
-          <Route path='/login' element={<Login/>} />
-          <Route path='/register' element={<Register/>} />
-          <Route path='/' element={<Home/>} />
+
+          <Route element={<AuthLayout/>}>
+            <Route path='/login' element={<Login/>} />
+            <Route path='/register' element={<Register/>} />
+          </Route>
+
+          <Route element={<MainLayout/>}>
+            <Route path='/' element={<Home/>} />
+          </Route>
+          
         </Routes>
 
       </BrowserRouter>
