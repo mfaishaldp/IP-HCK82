@@ -1,5 +1,6 @@
 import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const userSlice = createSlice({
   name: 'user',
@@ -19,14 +20,13 @@ const userSlice = createSlice({
     },
     fetchUserError(state, action) {
         state.loading = false
-        state.error = action.payload?.message
+        state.error = action.payload
     }
   }
 })
 
 export const { fetchUserStart, fetchUserSuccess, fetchUserError } = userSlice.actions
 export const userReducer = userSlice.reducer
-
 
 export const fetchUserRegister = createAsyncThunk('/register', async (payload, {dispatch}) => {
     try {
@@ -46,8 +46,44 @@ export const fetchUserRegister = createAsyncThunk('/register', async (payload, {
         });
 
         dispatch(fetchUserSuccess(response.data))
+
+
   } catch (error) {
-        dispatch(fetchUserError(error.response?.data?.message))
+        // dispatch(fetchUserError(error.response?.data?.message))
+        Swal.fire({
+            title: 'Error!',
+            text: error.response?.data?.message,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+        })
   }
 })
 
+export const fetchUserLogin = createAsyncThunk('/login', async (payload,{dispatch}) => {
+    try {
+
+        dispatch(fetchUserStart())
+
+        const response = await axios({
+            method: 'post',
+            url: 'http://localhost:3000/login',
+            data: {
+              username: payload.username,
+              password: payload.password
+            }
+        });
+
+        localStorage.setItem("access_token",response.data.access_token)
+
+        dispatch(fetchUserSuccess(response.data))
+
+
+    } catch (error) {
+        Swal.fire({
+            title: 'Error!',
+            text: error.response?.data?.message,
+            icon: 'error',
+            confirmButtonText: 'Cool'
+        })
+    }
+})
