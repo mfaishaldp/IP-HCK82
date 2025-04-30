@@ -30,11 +30,31 @@ class PlanController {
             res.status(200).json(data)
 
         } catch (error) {
-            console.log(error);
-            
             next(error)
         }
     }
+
+    static async getPlanByUserId (req,res,next) {
+        try {
+            const {id : userId} = req.user
+
+            const data = await Plan.findAll({
+                where : {
+                    UserId : +userId
+                }
+            })
+
+            // if (!data) {
+            //     throw {Name : 'NotFound', message : 'Plan not found'}
+            // }
+
+            res.status(200).json(data)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
 }
 
 module.exports = {
