@@ -26,7 +26,7 @@ export default function Login () {
                             username : username,
                             password : password
                         })).unwrap() //! perlu di unwrap karena ada fungsi async dan perlu di await
-                        navigate('/register')
+                        navigate('/')
                     }}>
                         <h2 className="text-2xl font-bold mb-4 text-white text-center mt-4">Login</h2>
                         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
@@ -42,7 +42,7 @@ export default function Login () {
 
                             <button className="btn btn-neutral mt-4 bg-color-green-dark" type='submit' >Login</button>
 
-                            <p>Don't have an account yet ? <button className="text-primary hover:text-primary-focus transition cursor-pointer" onClick={() => {navigate('/register')}}>Sign up</button> </p>
+                            <p>Don't have an account yet ? <a className="text-primary hover:text-primary-focus transition cursor-pointer" onClick={() => {navigate('/register')}}>Sign up</a> </p>
 
                         </fieldset>
                     </form>

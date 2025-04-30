@@ -44,7 +44,7 @@ export default function Register () {
 
                             <button className="btn btn-neutral mt-4 bg-color-green-dark" type='submit' >Sign Up</button>
 
-                            <p>Do you have an account? <button className="text-primary hover:text-primary-focus transition cursor-pointer" onClick={() => {navigate('/login')}}>login</button> </p>
+                            <p>Do you have an account? <a className="text-primary hover:text-primary-focus transition cursor-pointer" onClick={() => {navigate('/login')}}>login</a> </p>
 
                         </fieldset>
                     </form>
