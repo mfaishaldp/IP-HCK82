@@ -54,7 +54,7 @@ export const fetchUserRegister = createAsyncThunk('/register', async (payload, {
             title: 'Error!',
             text: error.response?.data?.message,
             icon: 'error',
-            confirmButtonText: 'Cool'
+            confirmButtonText: 'Close'
         })
   }
 })
@@ -83,7 +83,7 @@ export const fetchUserLogin = createAsyncThunk('/login', async (payload,{dispatc
             title: 'Error!',
             text: error.response?.data?.message,
             icon: 'error',
-            confirmButtonText: 'Cool'
+            confirmButtonText: 'Close'
         })
     }
 })

@@ -2,6 +2,7 @@ const axios = require('axios')
 const genAi = require('../helpers/genai')
 
 const API_KEY_GEOCODE = process.env.API_KEY_GEOCODE
+const API_KEY_OPEN_CAGE = process.env.API_KEY_OPEN_CAGE
 
 class DataController {
     static async getDataGeoCode (req,res,next) {
@@ -31,10 +32,11 @@ class DataController {
             if (response.data.length === 0) {
                 throw {name : 'NotFound', message : 'Location not found'}
             }
+
             
             res.status(200).json({
-                place_id : response.data[0].place_id,
-                display_name : response.data[0].display_name,
+                city : response.data[0].display_name,
+                country : req.query.country,
                 latitude : Number(response.data[0].lat),
                 longitude : Number(response.data[0].lon)
             })
@@ -123,6 +125,41 @@ class DataController {
             next(error)
         }
     }
+
+    static async getDataOpenCage (req,res,next) {
+        try {
+
+            const {lat , lon} = req.query
+
+            if (!lat) {
+                throw {name : 'BadRequest' , message : 'Please fill latitude'}
+            }
+            
+            
+            if (!lon) {
+                throw {name : 'BadRequest' , message : 'Please fill longitude'}
+            }
+
+            const response = await axios ({
+                method : 'get',
+                url : 'https://api.opencagedata.com/geocode/v1/json?key=' + API_KEY_OPEN_CAGE,
+                params : {
+                    q : `${req.query.lat}+${req.query.lon}`
+                }
+            })
+
+            res.status(200).json({
+                city:response.data.results[0].components.city,
+                country:response.data.results[0].components.country,
+                latitude : Number(req.query.lat),
+                longitude : Number(req.query.lon)
+            })
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
 }
 
 module.exports = {
