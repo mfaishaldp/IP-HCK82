@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserLogin } from '../store/userSlice'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
+import axios from 'axios'
 
 
 export default function Login () {
@@ -12,6 +13,38 @@ export default function Login () {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+    async function handleCredentialResponse(response) {
+        // console.log("Encoded JWT ID token: " + response.credential);
+        const server = await axios({
+            method: 'post',
+            url: 'http://localhost:3000/google-login',
+            data: {
+              googleToken: response.credential
+            }
+        });
+        
+
+        localStorage.setItem("access_token",server.data.access_token)
+        navigate('/')
+
+    }
+
+    const googleFunction = function () {
+        google.accounts.id.initialize({
+          client_id: "282092061496-hq2n9e1sb8ofdi4coltti2r99s8hkne9.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("buttonDiv"),
+          { theme: "outline", size: "large" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+    }
+
+    useEffect(() => {
+        googleFunction()
+    },[])
 
     return (
         <>
@@ -41,6 +74,7 @@ export default function Login () {
                             <input type="password" className="input" placeholder="Password" onChange={(event) => {setPassword(event.target.value)}}/>
 
                             <button className="btn btn-neutral mt-4 bg-color-green-dark" type='submit' >Login</button>
+                            <div id="buttonDiv"></div>
 
                             <p>Don't have an account yet ? <a className="text-primary hover:text-primary-focus transition cursor-pointer" onClick={() => {navigate('/register')}}>Sign up</a> </p>
 

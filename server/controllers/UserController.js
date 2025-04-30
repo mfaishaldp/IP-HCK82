@@ -1,6 +1,8 @@
 const {User,Plan} = require('../models/index')
 const {verifyToken} = require('../helpers/bcryptjs')
 const { signToken } = require('../helpers/jwt')
+const { OAuth2Client } = require('google-auth-library')
+
 class UserController {
 
     static async register (req,res,next) {
@@ -56,6 +58,46 @@ class UserController {
             })
 
         } catch (error) {
+            next(error)
+        }
+    }
+
+    static async googleLogin (req,res,next) {
+        try {
+            const {googleToken} = req.body
+            
+            if (!googleToken) {
+                throw {name : 'BadRequest', message : 'Google Token is required'}
+            }
+
+            const client = new OAuth2Client();
+            
+            const ticket = await client.verifyIdToken({
+                idToken : googleToken,
+                audience : process.env.GOOGLE_CLIENT_ID
+            });
+
+            const payload = ticket.getPayload()
+
+            const [user] = await User.findOrCreate({
+                where : {email : payload.email},
+                defaults : {
+                    username : payload.email.split("@")[0],
+                    password : Date.now().toString() + Math.random().toString()
+                }
+            })
+
+            const access_token = signToken({
+                id : user.id,
+                username : user.username,
+                email : user.email,
+            })
+
+            res.status(200).json({access_token})
+
+        } catch (error) {
+            console.log(error);
+            
             next(error)
         }
     }
