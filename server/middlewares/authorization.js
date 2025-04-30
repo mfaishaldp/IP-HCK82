@@ -7,6 +7,10 @@ async function guardUser(req,res,next) {
 
         const data = await Plan.findByPk(+planId)
 
+        if (!data) {
+            throw {name : 'NotFound', message : 'Error not found'}
+        }
+
         if (data.UserId !== userId) {
             throw {name : 'Forbidden', message : 'Forbidden Access'}
         }

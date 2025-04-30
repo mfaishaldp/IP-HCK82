@@ -83,7 +83,10 @@ class PlanController {
             const {id : planId} = req.params
             const {statusId} = req.body
 
+            
             const data = await Plan.findByPk(+planId)
+            
+            
             
             if (!data) {
                 throw {name : 'NotFound', message : 'Plan Not Found'}
@@ -96,6 +99,8 @@ class PlanController {
             res.status(200).json(data)
 
         } catch (error) {
+            console.log(error);
+            
             next(error)
         }
     }
