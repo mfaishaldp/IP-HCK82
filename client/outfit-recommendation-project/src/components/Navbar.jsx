@@ -20,7 +20,7 @@ export default function Navbar () {
                 </div>
             </div>
             <div className="navbar-center">
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl">ClimaWear</a>
             </div>
             <div className="navbar-end">
                 <ul className="menu menu-horizontal px-1">
@@ -41,3 +41,5 @@ export default function Navbar () {
         </>
     )
 }
+
+

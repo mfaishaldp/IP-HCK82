@@ -1,38 +1,38 @@
 [
     {
-        "UserId": 2,
-        "longitudeLocation": 106.827153,
-        "latitudeLocation": -6.175392,
-        "displayNameLocation": "Monas, Jakarta",
-        "longitudeDestination": 106.845599,
-        "latitudeDestination": -6.208763,
-        "displayNameDestination": "Plaza Indonesia, Jakarta",
-        "recommendationItems" : "{\"dataLocation\":{\"top\":\"Kaos putih polos\",\"bottom\":\"Celana jeans biru\",\"Outerwear\":\"Jaket denim\",\"footwear\":\"Sneakers putih\",\"accessories\":\"Jam tangan kulit dan topi baseball\"},\"dataDestination\":{\"top\":\"Kaos putih polos\",\"bottom\":\"Celana jeans biru\",\"Outerwear\":\"Jaket denim\",\"footwear\":\"Sneakers putih\",\"accessories\":\"Jam tangan kulit dan topi baseball\"}}",
-        "timeTemperaturePredicted" : "{\"dataLocation\":{\"time\":[\"2025-04-29T17:00\",\"2025-04-29T18:00\",\"2025-04-29T19:00\",\"2025-04-29T20:00\",\"2025-04-29T21:00\",\"2025-04-29T22:00\",\"2025-04-29T23:00\",\"2025-04-30T00:00\",\"2025-04-30T01:00\",\"2025-04-30T02:00\",\"2025-04-30T03:00\",\"2025-04-30T04:00\",\"2025-04-30T05:00\",\"2025-04-30T06:00\",\"2025-04-30T07:00\",\"2025-04-30T08:00\",\"2025-04-30T09:00\",\"2025-04-30T10:00\",\"2025-04-30T11:00\",\"2025-04-30T12:00\",\"2025-04-30T13:00\",\"2025-04-30T14:00\",\"2025-04-30T15:00\",\"2025-04-30T16:00\",\"2025-04-30T17:00\",\"2025-04-30T18:00\",\"2025-04-30T19:00\",\"2025-04-30T20:00\",\"2025-04-30T21:00\",\"2025-04-30T22:00\",\"2025-04-30T23:00\"],\"temperature\":[27.1,26.8,26.1,26,25.9,25.7,25.6,26.2,27.8,29.5,31.2,32.5,33.1,33.4,33,32.3,31,30.6,29.6,28.9,28.5,28.2,27.6,27.1,26.6,26.3,26.1,26,25.8,25.5,25.4]},\"dataDestination\":{\"time\":[\"2025-04-29T17:00\",\"2025-04-29T18:00\",\"2025-04-29T19:00\",\"2025-04-29T20:00\",\"2025-04-29T21:00\",\"2025-04-29T22:00\",\"2025-04-29T23:00\",\"2025-04-30T00:00\",\"2025-04-30T01:00\",\"2025-04-30T02:00\",\"2025-04-30T03:00\",\"2025-04-30T04:00\",\"2025-04-30T05:00\",\"2025-04-30T06:00\",\"2025-04-30T07:00\",\"2025-04-30T08:00\",\"2025-04-30T09:00\",\"2025-04-30T10:00\",\"2025-04-30T11:00\",\"2025-04-30T12:00\",\"2025-04-30T13:00\",\"2025-04-30T14:00\",\"2025-04-30T15:00\",\"2025-04-30T16:00\",\"2025-04-30T17:00\",\"2025-04-30T18:00\",\"2025-04-30T19:00\",\"2025-04-30T20:00\",\"2025-04-30T21:00\",\"2025-04-30T22:00\",\"2025-04-30T23:00\"],\"temperature\":[27.1,26.8,26.1,26,25.9,25.7,25.6,26.2,27.8,29.5,31.2,32.5,33.1,33.4,33,32.3,31,30.6,29.6,28.9,28.5,28.2,27.6,27.1,26.6,26.3,26.1,26,25.8,25.5,25.4]}}",
-        "StatusId" : 1
+        "UserId" : 2,
+        "StatusId" : 1,
+        "longitudeLocation" : 106.8473377,
+        "latitudeLocation" : -6.3546097,
+        "longitudeDestination" : 100.3632561,
+        "latitudeDestination" : -0.9247587,
+        "displayNameLocation" : "Depok",
+        "displayNameDestination" : "Padang, West Sumatra, Sumatra, Indonesia",
+        "recommendationItems" : "{\"dataLocation\":{\"top\":\"Lightweight linen t-shirt\",\"bottom\":\"Chambray shorts\",\"outerwear\":\"None\",\"footwear\":\"Sandals\",\"accessories\":\"Sunglasses\"},\"dataDestination\":{\"top\":\"Cotton T-shirt\",\"bottom\":\"Linen Shorts\",\"outerwear\":\"None\",\"footwear\":\"Sandals\",\"accessories\":\"Sunglasses\"}}",
+        "timeTemperaturePredicted" : "{\"dataLocation\":{\"time\":30.9,\"temperature\":30.9},\"dataDestination\":{\"time\":29.2,\"temperature\":29.2}}"
     },
     {
-        "UserId": 3,
-        "longitudeLocation": 110.3671,
-        "latitudeLocation": -7.8012,
-        "displayNameLocation": "Malioboro, Yogyakarta",
-        "longitudeDestination": 110.3695,
-        "latitudeDestination": -7.7829,
-        "displayNameDestination": "Tugu Yogyakarta",
-        "recommendationItems": "{\"dataLocation\":{\"top\":\"Kaos putih polos\",\"bottom\":\"Celana jeans biru\",\"Outerwear\":\"Jaket denim\",\"footwear\":\"Sneakers putih\",\"accessories\":\"Jam tangan kulit dan topi baseball\"},\"dataDestination\":{\"top\":\"Kaos putih polos\",\"bottom\":\"Celana jeans biru\",\"Outerwear\":\"Jaket denim\",\"footwear\":\"Sneakers putih\",\"accessories\":\"Jam tangan kulit dan topi baseball\"}}",
-        "timeTemperaturePredicted": "{\"dataLocation\":{\"time\":[\"2025-04-29T17:00\",\"2025-04-29T18:00\",\"2025-04-29T19:00\",\"2025-04-29T20:00\",\"2025-04-29T21:00\",\"2025-04-29T22:00\",\"2025-04-29T23:00\",\"2025-04-30T00:00\",\"2025-04-30T01:00\",\"2025-04-30T02:00\",\"2025-04-30T03:00\",\"2025-04-30T04:00\",\"2025-04-30T05:00\",\"2025-04-30T06:00\",\"2025-04-30T07:00\",\"2025-04-30T08:00\",\"2025-04-30T09:00\",\"2025-04-30T10:00\",\"2025-04-30T11:00\",\"2025-04-30T12:00\",\"2025-04-30T13:00\",\"2025-04-30T14:00\",\"2025-04-30T15:00\",\"2025-04-30T16:00\",\"2025-04-30T17:00\",\"2025-04-30T18:00\",\"2025-04-30T19:00\",\"2025-04-30T20:00\",\"2025-04-30T21:00\",\"2025-04-30T22:00\",\"2025-04-30T23:00\"],\"temperature\":[27.1,26.8,26.1,26,25.9,25.7,25.6,26.2,27.8,29.5,31.2,32.5,33.1,33.4,33,32.3,31,30.6,29.6,28.9,28.5,28.2,27.6,27.1,26.6,26.3,26.1,26,25.8,25.5,25.4]},\"dataDestination\":{\"time\":[\"2025-04-29T17:00\",\"2025-04-29T18:00\",\"2025-04-29T19:00\",\"2025-04-29T20:00\",\"2025-04-29T21:00\",\"2025-04-29T22:00\",\"2025-04-29T23:00\",\"2025-04-30T00:00\",\"2025-04-30T01:00\",\"2025-04-30T02:00\",\"2025-04-30T03:00\",\"2025-04-30T04:00\",\"2025-04-30T05:00\",\"2025-04-30T06:00\",\"2025-04-30T07:00\",\"2025-04-30T08:00\",\"2025-04-30T09:00\",\"2025-04-30T10:00\",\"2025-04-30T11:00\",\"2025-04-30T12:00\",\"2025-04-30T13:00\",\"2025-04-30T14:00\",\"2025-04-30T15:00\",\"2025-04-30T16:00\",\"2025-04-30T17:00\",\"2025-04-30T18:00\",\"2025-04-30T19:00\",\"2025-04-30T20:00\",\"2025-04-30T21:00\",\"2025-04-30T22:00\",\"2025-04-30T23:00\"],\"temperature\":[27.1,26.8,26.1,26,25.9,25.7,25.6,26.2,27.8,29.5,31.2,32.5,33.1,33.4,33,32.3,31,30.6,29.6,28.9,28.5,28.2,27.6,27.1,26.6,26.3,26.1,26,25.8,25.5,25.4]}}",
-        "StatusId" : 1
+        "UserId" : 2,
+        "StatusId" : 1,
+        "longitudeLocation" : 106.8473377,
+        "latitudeLocation" : -6.3546097,
+        "longitudeDestination" : 10.000654,
+        "latitudeDestination" : 53.550341,
+        "displayNameLocation" : "Depok",
+        "displayNameDestination" : "Hamburg, Germany",
+        "recommendationItems" : "{\"dataLocation\":{\"top\":\"T-shirt\",\"bottom\":\"Shorts\",\"outerwear\":\"Light jacket (optional)\",\"footwear\":\"Sandals or sneakers\",\"accessories\":\"Sunglasses, hat\"},\"dataDestination\":{\"top\":\"Long-sleeved t-shirt\",\"bottom\":\"Jeans\",\"outerwear\":\"Light jacket\",\"footwear\":\"Sneakers\",\"accessories\":\"Scarf\"}}",
+        "timeTemperaturePredicted" : "{\"dataLocation\":{\"time\":\"2025-05-01T23:00\",\"temperature\":24.9},\"dataDestination\":{\"time\":\"2025-05-02T12:00\",\"temperature\":19.5}}"
     },
     {
-        "UserId": 2,
-        "longitudeLocation": 113.0927,
-        "latitudeLocation": -7.9913,
-        "displayNameLocation": "Pantai Parangtritis, Yogyakarta",
-        "longitudeDestination": 113.1180,
-        "latitudeDestination": -7.9704,
-        "displayNameDestination": "Pantai Depok, Yogyakarta",
-        "recommendationItems": "{\"dataLocation\":{\"top\":\"Kaos putih polos\",\"bottom\":\"Celana jeans biru\",\"Outerwear\":\"Jaket denim\",\"footwear\":\"Sneakers putih\",\"accessories\":\"Jam tangan kulit dan topi baseball\"},\"dataDestination\":{\"top\":\"Kaos putih polos\",\"bottom\":\"Celana jeans biru\",\"Outerwear\":\"Jaket denim\",\"footwear\":\"Sneakers putih\",\"accessories\":\"Jam tangan kulit dan topi baseball\"}}",
-        "timeTemperaturePredicted": "{\"dataLocation\":{\"time\":[\"2025-04-29T17:00\",\"2025-04-29T18:00\",\"2025-04-29T19:00\",\"2025-04-29T20:00\",\"2025-04-29T21:00\",\"2025-04-29T22:00\",\"2025-04-29T23:00\",\"2025-04-30T00:00\",\"2025-04-30T01:00\",\"2025-04-30T02:00\",\"2025-04-30T03:00\",\"2025-04-30T04:00\",\"2025-04-30T05:00\",\"2025-04-30T06:00\",\"2025-04-30T07:00\",\"2025-04-30T08:00\",\"2025-04-30T09:00\",\"2025-04-30T10:00\",\"2025-04-30T11:00\",\"2025-04-30T12:00\",\"2025-04-30T13:00\",\"2025-04-30T14:00\",\"2025-04-30T15:00\",\"2025-04-30T16:00\",\"2025-04-30T17:00\",\"2025-04-30T18:00\",\"2025-04-30T19:00\",\"2025-04-30T20:00\",\"2025-04-30T21:00\",\"2025-04-30T22:00\",\"2025-04-30T23:00\"],\"temperature\":[27.1,26.8,26.1,26,25.9,25.7,25.6,26.2,27.8,29.5,31.2,32.5,33.1,33.4,33,32.3,31,30.6,29.6,28.9,28.5,28.2,27.6,27.1,26.6,26.3,26.1,26,25.8,25.5,25.4]},\"dataDestination\":{\"time\":[\"2025-04-29T17:00\",\"2025-04-29T18:00\",\"2025-04-29T19:00\",\"2025-04-29T20:00\",\"2025-04-29T21:00\",\"2025-04-29T22:00\",\"2025-04-29T23:00\",\"2025-04-30T00:00\",\"2025-04-30T01:00\",\"2025-04-30T02:00\",\"2025-04-30T03:00\",\"2025-04-30T04:00\",\"2025-04-30T05:00\",\"2025-04-30T06:00\",\"2025-04-30T07:00\",\"2025-04-30T08:00\",\"2025-04-30T09:00\",\"2025-04-30T10:00\",\"2025-04-30T11:00\",\"2025-04-30T12:00\",\"2025-04-30T13:00\",\"2025-04-30T14:00\",\"2025-04-30T15:00\",\"2025-04-30T16:00\",\"2025-04-30T17:00\",\"2025-04-30T18:00\",\"2025-04-30T19:00\",\"2025-04-30T20:00\",\"2025-04-30T21:00\",\"2025-04-30T22:00\",\"2025-04-30T23:00\"],\"temperature\":[27.1,26.8,26.1,26,25.9,25.7,25.6,26.2,27.8,29.5,31.2,32.5,33.1,33.4,33,32.3,31,30.6,29.6,28.9,28.5,28.2,27.6,27.1,26.6,26.3,26.1,26,25.8,25.5,25.4]}}",
-        "StatusId" : 1
+        "UserId" : 2,
+        "StatusId" : 1,
+        "longitudeLocation" : 106.7302843,
+        "latitudeLocation" : -6.2292209,
+        "longitudeDestination" : 10.000654,
+        "latitudeDestination" : 53.550341,
+        "displayNameLocation" : "Tangerang",
+        "displayNameDestination" : "Hamburg, Germany",
+        "recommendationItems" : "{\"dataLocation\":{\"top\":\"T-shirt\",\"bottom\":\"Shorts\",\"outerwear\":\"Light denim jacket (optional)\",\"footwear\":\"Sandals\",\"accessories\":\"Sunglasses\"},\"dataDestination\":{\"top\":\"Long-sleeved t-shirt\",\"bottom\":\"Jeans\",\"outerwear\":\"Light jacket\",\"footwear\":\"Sneakers\",\"accessories\":\"Sunglasses\"}}",
+        "timeTemperaturePredicted" : "{\"dataLocation\":{\"time\":25.2,\"temperature\":25.2},\"dataDestination\":{\"time\":19.7,\"temperature\":19.7}}"
     }
 ]

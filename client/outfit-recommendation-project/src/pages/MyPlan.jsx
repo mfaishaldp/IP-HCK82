@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchPlanGetPlanByUserId,fetchPlanDelPlanById } from "../store/planSlice"
+import { fetchPlanGetPlanByUserId,fetchPlanDelPlanById,fetchPlanPutStatus } from "../store/planSlice"
 
 export default function MyPlan () {
 
@@ -15,7 +15,7 @@ export default function MyPlan () {
     return (
         <>
 
-            {console.log(itemsPlanByUserId)}
+            {/* {console.log(itemsPlanByUserId)} */}
 
             <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-4">
                 {itemsPlanByUserId.map((el, idx) => {
@@ -44,6 +44,9 @@ export default function MyPlan () {
                         </ul>
                         </div>
 
+                        
+                        <hr className="my-4 border-t border-gray-300" />
+
                         <div>
                         <h3 className="font-semibold text-gray-800">Destination</h3>
                         <p className="text-gray-600">{el.displayNameDestination} - {dataTemp.dataDestination.time} (GMT) - {dataTemp.dataDestination.temperature}°C</p>
@@ -61,21 +64,49 @@ export default function MyPlan () {
                         </div>
 
                         <div className="mt-auto text-sm font-semibold text-[#BF9264]">
-                        Status: {el.Status.statusName}
+                            Status: {el.Status.statusName}
                         </div>
 
-                        <button
-                            className="w-full py-3 bg-[#BF9264] text-white font-semibold rounded-lg hover:bg-[#9F7C57] focus:outline-none focus:ring-2 focus:ring-[#BF9264]"
-                            type="button"
-                            onClick={async () => {
-                                await dispatch(fetchPlanDelPlanById({
-                                    id : el.id
-                                })).unwrap()
-                                await dispatch(fetchPlanGetPlanByUserId()).unwrap()
-                            }}
-                        >
-                            Delete
-                        </button>
+
+                        <div className="flex gap-4">
+
+                            <button
+                                className="w-full py-3 bg-[#BBD8A3] text-white font-semibold rounded-lg hover:bg-[#6F826A] focus:outline-none focus:ring-2 focus:ring-[#BF9264]"
+                                type="button"
+                                onClick={async () => {
+                                    if (el.StatusId === 1) {
+                                        await dispatch(fetchPlanPutStatus({
+                                            statusId : 2,
+                                            id : el.id
+                                        })).unwrap()
+                                    } else {
+                                        await dispatch(fetchPlanPutStatus({
+                                            statusId : 1,
+                                            id : el.id
+                                        })).unwrap()
+                                    }
+                                    await dispatch(fetchPlanGetPlanByUserId()).unwrap()
+                                }}
+                            >
+                                {
+                                    el.Status.id === 1 ? 'Arrived' : 'On The Way'
+                                }
+                            </button>
+
+                            <button
+                                className="w-full py-3 bg-[#FBC3B0] text-white font-semibold rounded-lg hover:bg-[#FF9B9B] focus:outline-none focus:ring-2 focus:ring-[#BF9264]"
+                                type="button"
+                                onClick={async () => {
+                                    await dispatch(fetchPlanDelPlanById({
+                                        id : el.id
+                                    })).unwrap()
+                                    await dispatch(fetchPlanGetPlanByUserId()).unwrap()
+                                }}
+                            >
+                                Delete
+                            </button>
+                        </div>
+                        
 
                     </div>
                     );

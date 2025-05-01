@@ -229,9 +229,6 @@ export const fetchPlanGetPlanByUserId = createAsyncThunk('/add-plan', async (pay
 export const fetchPlanDelPlanById = createAsyncThunk('/plan/:id', async (payload, {dispatch}) => {
     try {
 
-        console.log(payload);
-        
-
         const response = await axios({
             method: 'delete',
             url: 'http://localhost:3000/plan/'+payload.id,
@@ -240,7 +237,32 @@ export const fetchPlanDelPlanById = createAsyncThunk('/plan/:id', async (payload
             }
         });
 
-        // dispatch(fetchPlanSuccessGetPlanByUserId(response.data))
+    } catch (error) {
+        Swal.fire({
+            title: 'Error!',
+            text: error.response?.data?.message,
+            icon: 'error',
+            confirmButtonText: 'Close'
+        })
+    }
+})
+
+export const fetchPlanPutStatus = createAsyncThunk('/plan/:id', async (payload, {dispatch}) => {
+    try {
+
+        const response = await axios({
+            method: 'put',
+            url: 'http://localhost:3000/plan/'+payload.id,
+            data : {
+                statusId : payload.statusId
+            },
+            params : {
+                id : payload.id
+            },
+            headers : {
+                Authorization : 'Bearer ' + localStorage.getItem("access_token")
+            }
+        });
 
     } catch (error) {
         console.log(error);

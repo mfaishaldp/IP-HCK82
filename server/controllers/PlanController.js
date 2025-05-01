@@ -46,7 +46,8 @@ class PlanController {
                 },
                 include : [{
                     model : Status
-                }]
+                }],
+                order : [['createdAt','ASC']]
             })
 
             // if (!data) {
