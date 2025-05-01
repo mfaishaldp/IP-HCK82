@@ -1,7 +1,25 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchPlanGetLonLat,fetchPlanGetLocName,fetchPlanGetTemperature } from "../store/planSlice"
+import { Line } from 'react-chartjs-2'
+import {
+    Chart as ChartJS,
+    LineElement,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    Tooltip,
+    Legend
+} from 'chart.js'
+
+ChartJS.register(
+    LineElement,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    Tooltip,
+    Legend
+)
 
 export default function Home () {
 
@@ -69,15 +87,65 @@ export default function Home () {
             {console.log(dataLoc,"destLoc")}
             {console.log(dataTemps,"destTemp")}
 
-            <div className="h-screen">
-                <p>Current Location : {currLoc.city} , Country : {currLoc.country}, latitude : {currLoc.latitude}, longitude : {currLoc.longitude} </p>
+            <div className="p-10">
+                <Line
+                    data = {{
+                        labels : Object.keys(currTemp).length !== 0 && currTemp.data.time,
+                        datasets : [
+                            {
+                                label : Object.keys(currLoc).length !== 0 && `Forecast Temp ${currLoc.city}, ${currLoc.country} in °C`,
+                                data : Object.keys(currTemp).length !== 0 && currTemp.data.temperature,
+                                borderColor : '#BF9264',
+                                backgroundColor : '#F0F1C5',
+                                pointBackgroundColor : '#F0F1C5',
+                                tension : 0.4
+                            },
+                            Object.keys(dataLoc).longitude !== 0 && dataLoc.longitude !== currLoc.longitude ?
+                            {
+                                // label : Object.keys(dataLoc).length !== 0 && `Forecast Temp ${dataLoc.city}, ${dataLoc.country} in °C`,
+                                label : Object.keys(dataLoc).longitude !== 0 && `Forecast Temp ${dataLoc.city}, ${dataLoc.country} in °C`,
+                                data : Object.keys(dataTemps).length !== 0 && dataTemps.data.temperature,
+                                borderColor : '#6F826A',
+                                backgroundColor : '#BBD8A3',
+                                pointBackgroundColor : '#BBD8A3',
+                                tension : 0.4
+                            } : 
+                            {
+                                label : "Please Choose Destination Location"
+                            }
+                        ]
+                    }}
+                    plugins={[
+                        {
+                            id: 'custom_canvas_background_color',
+                            beforeDraw: (chart) => {
+                                const { ctx } = chart;
+                                ctx.save();
+                                ctx.globalCompositeOperation = 'destination-over';
+                                ctx.fillStyle = '#f5f5f5'; // Change this to any color you want
+                                ctx.fillRect(0, 0, chart.width, chart.height);
+                                ctx.restore();
+                            }
+                        }
+                    ]}
+                ></Line>
+            </div>
 
-                {
-                    dataLoc.latitude === currLoc.latitude && dataLoc.longitude === currLoc.longitude ?
-                        null
-                        :
-                        <p>Destination Location : {dataLoc.city} , Country : {dataLoc.country}, latitude : {dataLoc.latitude}, longitude : {dataLoc.longitude} </p>
-                }
+
+            {/* <div className="h-screen"> */}
+            <div className="">
+
+                <div className="text-center">
+                    <p>Current Location : {currLoc.city} , Country : {currLoc.country}, latitude : {currLoc.latitude}, longitude : {currLoc.longitude} </p>
+
+                    {
+                        dataLoc.latitude === currLoc.latitude && dataLoc.longitude === currLoc.longitude ?
+                            null
+                            :
+                            <p>Destination Location : {dataLoc.city} , Country : {dataLoc.country}, latitude : {dataLoc.latitude}, longitude : {dataLoc.longitude} </p>
+                    }
+                </div>
+                
 
 
                 <form onSubmit={ async (event) => {
