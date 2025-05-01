@@ -1,0 +1,38 @@
+[
+    {
+        "UserId" : 2,
+        "StatusId" : 1,
+        "longitudeLocation" : 106.8473377,
+        "latitudeLocation" : -6.3546097,
+        "longitudeDestination" : 100.3632561,
+        "latitudeDestination" : -0.9247587,
+        "displayNameLocation" : "Depok",
+        "displayNameDestination" : "Padang, West Sumatra, Sumatra, Indonesia",
+        "recommendationItems" : "{\"dataLocation\":{\"top\":\"Lightweight linen t-shirt\",\"bottom\":\"Chambray shorts\",\"outerwear\":\"None\",\"footwear\":\"Sandals\",\"accessories\":\"Sunglasses\"},\"dataDestination\":{\"top\":\"Cotton T-shirt\",\"bottom\":\"Linen Shorts\",\"outerwear\":\"None\",\"footwear\":\"Sandals\",\"accessories\":\"Sunglasses\"}}",
+        "timeTemperaturePredicted" : "{\"dataLocation\":{\"time\":30.9,\"temperature\":30.9},\"dataDestination\":{\"time\":29.2,\"temperature\":29.2}}"
+    },
+    {
+        "UserId" : 2,
+        "StatusId" : 1,
+        "longitudeLocation" : 106.8473377,
+        "latitudeLocation" : -6.3546097,
+        "longitudeDestination" : 10.000654,
+        "latitudeDestination" : 53.550341,
+        "displayNameLocation" : "Depok",
+        "displayNameDestination" : "Hamburg, Germany",
+        "recommendationItems" : "{\"dataLocation\":{\"top\":\"T-shirt\",\"bottom\":\"Shorts\",\"outerwear\":\"Light jacket (optional)\",\"footwear\":\"Sandals or sneakers\",\"accessories\":\"Sunglasses, hat\"},\"dataDestination\":{\"top\":\"Long-sleeved t-shirt\",\"bottom\":\"Jeans\",\"outerwear\":\"Light jacket\",\"footwear\":\"Sneakers\",\"accessories\":\"Scarf\"}}",
+        "timeTemperaturePredicted" : "{\"dataLocation\":{\"time\":\"2025-05-01T23:00\",\"temperature\":24.9},\"dataDestination\":{\"time\":\"2025-05-02T12:00\",\"temperature\":19.5}}"
+    },
+    {
+        "UserId" : 2,
+        "StatusId" : 1,
+        "longitudeLocation" : 106.7302843,
+        "latitudeLocation" : -6.2292209,
+        "longitudeDestination" : 10.000654,
+        "latitudeDestination" : 53.550341,
+        "displayNameLocation" : "Tangerang",
+        "displayNameDestination" : "Hamburg, Germany",
+        "recommendationItems" : "{\"dataLocation\":{\"top\":\"T-shirt\",\"bottom\":\"Shorts\",\"outerwear\":\"Light denim jacket (optional)\",\"footwear\":\"Sandals\",\"accessories\":\"Sunglasses\"},\"dataDestination\":{\"top\":\"Long-sleeved t-shirt\",\"bottom\":\"Jeans\",\"outerwear\":\"Light jacket\",\"footwear\":\"Sneakers\",\"accessories\":\"Sunglasses\"}}",
+        "timeTemperaturePredicted" : "{\"dataLocation\":{\"time\":25.2,\"temperature\":25.2},\"dataDestination\":{\"time\":19.7,\"temperature\":19.7}}"
+    }
+]

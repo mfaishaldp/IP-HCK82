@@ -1,0 +1,11 @@
+npx sequelize db:drop && npx sequelize db:create
+
+
+to create model :
+
+npx sequelize model:create --name 'User' --attributes username:string,email:string,password:string
+npx sequelize model:create --name 'Plan' --attributes UserId:integer,StatusId:Integer,longitudeLocation:float,latitudeLocation:float,longitudeDestination:float,latitudeDestination:float,displayNameLocation:string,displayNameDestination:string,recommendationItems:text,timeTemperaturePredicted:text
+npx sequelize model:create --name 'Status' --attributes statusName:string
+
+to migrate table : 
+npx sequelize db:migrate
