@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchPlanGetLonLat,fetchPlanGetLocName } from "../store/planSlice"
+import { fetchPlanGetLonLat,fetchPlanGetLocName,fetchPlanGetTemperature } from "../store/planSlice"
 
 export default function Home () {
 
     const dispatch = useDispatch()
-    const {items : dataPlan, loading, error} = useSelector(data => data.plan)
+    const {items : dataLoc, temps : dataTemps, loading, error} = useSelector(data => data.plan)
 
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
 
     const [currLoc, setCurrLoc] = useState({})
+    const [currTemp, setCurrTemp] = useState({})
 
     async function getCurrLocation () {
         try {
@@ -19,34 +20,63 @@ export default function Home () {
                 navigator.geolocation.getCurrentPosition(resolve, reject)
             );
             
-            const resultCurr = await dispatch(fetchPlanGetLocName({
+            const resCurrLocName = await dispatch(fetchPlanGetLocName({
                 lat : position.coords.latitude,
                 lon : position.coords.longitude,
             })).unwrap()
 
-            setCurrLoc(resultCurr)
+            setCurrLoc(resCurrLocName)
 
         } catch (error) {
             throw error
         }
     }
 
-
     useEffect(() => {
         getCurrLocation()
     },[])
 
+    useEffect(() => {
+        if (Object.keys(currLoc).length !== 0) {
+            const fetchTemp = async () => {
+                const resCurrTemp = await dispatch(fetchPlanGetTemperature({
+                    latitude : currLoc.latitude,
+                    longitude : currLoc.longitude
+                })).unwrap()
+                setCurrTemp(resCurrTemp)
+            }
+            fetchTemp()
+        }
+    }, [currLoc])
+
+    useEffect(() => {
+        if (Object.keys(currLoc).length !== 0) {
+            const fetchNewTemp = async () => {
+                await dispatch(fetchPlanGetTemperature({
+                    latitude : dataLoc.latitude,
+                    longitude : dataLoc.longitude
+                })).unwrap()
+            }
+            fetchNewTemp()
+        }
+    },[dataLoc])
+
     return (
         <>
+
+            {console.log(currTemp,"currTemp")}
+            {console.log(currLoc,"currLoc")}
+            {console.log(dataLoc,"destLoc")}
+            {console.log(dataTemps,"destTemp")}
 
             <div className="h-screen">
                 <p>Current Location : {currLoc.city} , Country : {currLoc.country}, latitude : {currLoc.latitude}, longitude : {currLoc.longitude} </p>
 
                 {
-                    dataPlan.latitude === currLoc.latitude && dataPlan.longitude === currLoc.longitude ?
+                    dataLoc.latitude === currLoc.latitude && dataLoc.longitude === currLoc.longitude ?
                         null
                         :
-                        <p>Destination Location : {dataPlan.city} , Country : {dataPlan.country}, latitude : {dataPlan.latitude}, longitude : {dataPlan.longitude} </p>
+                        <p>Destination Location : {dataLoc.city} , Country : {dataLoc.country}, latitude : {dataLoc.latitude}, longitude : {dataLoc.longitude} </p>
                 }
 
 
@@ -55,7 +85,8 @@ export default function Home () {
                     await dispatch(fetchPlanGetLonLat({
                         city : city,
                         country : country
-                    })).unwrap()
+                    })).unwrap();
+                    
                 }}
                     className="flex gap-4"
                 >

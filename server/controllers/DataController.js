@@ -51,14 +51,14 @@ class DataController {
 
             const {latitude , longitude} = req.query
 
-            if (!latitude) {
-                throw {name : 'BadRequest' , message : 'Please fill latitude'}
-            }
+            // if (!latitude) {
+            //     throw {name : 'BadRequest' , message : 'Please fill latitude'}
+            // }
             
             
-            if (!longitude) {
-                throw {name : 'BadRequest' , message : 'Please fill longitude'}
-            }
+            // if (!longitude) {
+            //     throw {name : 'BadRequest' , message : 'Please fill longitude'}
+            // }
 
             const response = await axios ({
                 method : 'get',
@@ -72,13 +72,13 @@ class DataController {
             const resTime = []
             const resTemp = []
 
+            
             for (let i = 0; i < response.data.hourly.time.length; i++) { //! to get data > current datetime
                 if (new Date(response.data.hourly.time[i]) > new Date()) {
                     resTime.push(response.data.hourly.time[i])
                     resTemp.push(response.data.hourly.temperature_2m[i])
                 }
             }
-
             res.status(200).json({
                 latitude : Number(req.query.latitude),
                 longitude : Number(req.query.longitude),
@@ -89,8 +89,12 @@ class DataController {
                     temperature : resTemp
                 }
             })
+            
+
 
         } catch (error) {
+            console.log(error);
+            
             next(error)
         }
     }

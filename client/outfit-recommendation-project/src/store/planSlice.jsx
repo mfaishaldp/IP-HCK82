@@ -7,6 +7,7 @@ const planSlice = createSlice({
   name: 'plan',
   initialState : {
     items : {},
+    temps : {},
     loading : '',
     error : ''
   },
@@ -19,6 +20,10 @@ const planSlice = createSlice({
         state.loading = false
         state.items = action.payload
     },
+    fetchPlanSuccessTemperature(state, action) {
+        state.loading = false
+        state.temps = action.payload
+    },
     fetchPlanError(state, action) {
       state.loading = false
       state.error = action.payload
@@ -26,7 +31,7 @@ const planSlice = createSlice({
   }
 })
 
-export const { fetchPlanStart, fetchPlanSuccess, fetchPlanError } = planSlice.actions
+export const { fetchPlanStart, fetchPlanSuccess, fetchPlanError, fetchPlanSuccessTemperature } = planSlice.actions
 export const planReducer = planSlice.reducer
 
 export const fetchPlanGetLocName = createAsyncThunk('/data/get-location-name', async (payload,{dispatch}) => {
@@ -85,6 +90,37 @@ export const fetchPlanGetLonLat = createAsyncThunk('/data/get-lon-lat', async (p
             confirmButtonText: 'Close'
         })
     }
-    
 })
+
+export const fetchPlanGetTemperature = createAsyncThunk('/data/get-temperature', async (payload, {dispatch}) => {
+    try {
+
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:3000/data/get-temperature',
+            params: {
+              latitude: payload.latitude,
+              longitude: payload.longitude
+            },
+            headers : {
+                Authorization : 'Bearer ' + localStorage.getItem("access_token")
+            }
+        });
+
+        dispatch(fetchPlanSuccessTemperature(response.data))
+
+        return response.data
+
+    } catch (error) {
+
+        console.log(error);
+        
+        Swal.fire({
+            title: 'Error!',
+            text: error.response?.data?.message,
+            icon: 'error',
+            confirmButtonText: 'Close'
+        })
+    }
+  })
 
