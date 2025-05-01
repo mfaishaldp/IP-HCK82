@@ -5,14 +5,14 @@ function signToken(inObjUser) {
         const token = jwt.sign(inObjUser, JWT_KEY);
         return token
     } catch (error) {
-        next(error)
+        throw error
     }
 }
 function verifyToken(inToken) {
     try {
         return jwt.verify(inToken, JWT_KEY);
     } catch (error) {
-        next(error)
+        throw error
     }
 }
 

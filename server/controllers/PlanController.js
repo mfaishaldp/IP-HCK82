@@ -69,9 +69,9 @@ class PlanController {
 
             const dataDel = await Plan.findByPk(+planId)
 
-            if (!dataDel) {
-                throw {name : 'NotFound', message : 'Plan not found'}
-            }
+            // if (!dataDel) {
+            //     throw {name : 'NotFound', message : 'Plan not found'}
+            // }
 
             await Plan.destroy({
                 where : {
@@ -82,8 +82,6 @@ class PlanController {
             res.status(200).json(dataDel)
 
         } catch (error) {
-            console.log(error);
-            
             next(error)
         }
     }
@@ -95,9 +93,9 @@ class PlanController {
 
             const data = await Plan.findByPk(+planId)
             
-            if (!data) {
-                throw {name : 'NotFound', message : 'Plan Not Found'}
-            }
+            // if (!data) {
+            //     throw {name : 'NotFound', message : 'Plan Not Found'}
+            // }
 
             await data.update({
                 StatusId : statusId
