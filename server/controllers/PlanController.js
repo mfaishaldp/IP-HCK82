@@ -1,4 +1,4 @@
-const {Plan} = require('../models')
+const {Plan,Status} = require('../models')
 class PlanController {
     static async createPlan (req,res,next) {
         try {
@@ -13,6 +13,8 @@ class PlanController {
             res.status(201).json(data)
             
         } catch (error) {
+            console.log(error);
+            
             next(error)
         }
     }
@@ -41,7 +43,10 @@ class PlanController {
             const data = await Plan.findAll({
                 where : {
                     UserId : +userId
-                }
+                },
+                include : [{
+                    model : Status
+                }]
             })
 
             // if (!data) {
@@ -51,6 +56,8 @@ class PlanController {
             res.status(200).json(data)
 
         } catch (error) {
+            console.log(error);
+            
             next(error)
         }
     }
@@ -74,6 +81,8 @@ class PlanController {
             res.status(200).json(dataDel)
 
         } catch (error) {
+            console.log(error);
+            
             next(error)
         }
     }

@@ -14,8 +14,8 @@ export default function Navbar () {
                 <ul
                     tabIndex={0}
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                    <li><a>Home</a></li>
-                    <li><a>My Plan</a></li>
+                    <li><a onClick={() => {navigate('/')}}>Home</a></li>
+                    <li><a onClick={() => {navigate('/my-plan')}}>My Plan</a></li>
                 </ul>
                 </div>
             </div>
@@ -24,7 +24,7 @@ export default function Navbar () {
             </div>
             <div className="navbar-end">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a>Home</a></li>
+                    {/* <li><a>Home</a></li> */}
                     <li>
                         <details>
                         <summary>Profile</summary>

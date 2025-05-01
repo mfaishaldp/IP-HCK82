@@ -5,6 +5,7 @@ import Register from './pages/register'
 import Home from './pages/Home'
 import MainLayout from './layouts/MainLayout'
 import AuthLayout from './layouts/AuthLayout'
+import MyPlan from './pages/MyPlan'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
 
           <Route element={<MainLayout/>}>
             <Route path='/' element={<Home/>} />
+            <Route path='/my-plan' element={<MyPlan/>} />
           </Route>
           
         </Routes>

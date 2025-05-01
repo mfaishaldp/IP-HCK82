@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchPlanGetLonLat,fetchPlanGetLocName,fetchPlanGetTemperature,fetchPlanGetGemini } from "../store/planSlice"
+import { fetchPlanGetLonLat,fetchPlanGetLocName,fetchPlanGetTemperature,fetchPlanGetGemini,fetchPlanAdd } from "../store/planSlice"
 import { Line } from 'react-chartjs-2'
 import {
     Chart as ChartJS,
@@ -12,6 +12,7 @@ import {
     Legend
 } from 'chart.js'
 import Swal from "sweetalert2"
+import { useNavigate } from "react-router"
 
 ChartJS.register(
     LineElement,
@@ -24,8 +25,10 @@ ChartJS.register(
 
 export default function Home () {
 
+    const navigate = useNavigate()
+
     const dispatch = useDispatch()
-    const {items : dataLoc, temps : dataTemp, itemsGemini : dataGemini, loading, error} = useSelector(data => data.plan)
+    const {items : dataLoc, temps : dataTemp, itemsGemini : dataGemini, itemsAdd:dataAdd, loading, error} = useSelector(data => data.plan)
 
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
@@ -35,6 +38,9 @@ export default function Home () {
 
     const [selTempCurr, setSelTempCurr] = useState(0)
     const [selTempDest, setSelTempDest] = useState(0)
+
+    const [selTimeCurr, setSelTimeCurr] = useState('')
+    const [selTimeDest, setSelTimeDest] = useState('')
 
     const [outfitCurr, setOutfitCurr] = useState({})
     const [outfitDest, setOutfitDest] = useState({})
@@ -96,11 +102,11 @@ export default function Home () {
             {console.log(selTimeCurr,"selTimeCurr")}
             {console.log(selTimeDest,"selTimeDest")} */}
 
-            {console.log(selTempCurr,"selTempCurr")}
+            {/* {console.log(selTempCurr,"selTempCurr")}
             {console.log(selTempDest,"selTempDest")}
 
             {console.log(outfitCurr," <<<< outfitCurr")}
-            {console.log(outfitDest," <<<< outfitDest")}
+            {console.log(outfitDest," <<<< outfitDest")} */}
 
             {/* <h1>{selTempCurr} - sel temp curr</h1> */}
 
@@ -255,6 +261,7 @@ export default function Home () {
                                         className="w-full p-3 border border-[#BF9264] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#BF9264]"
                                         onChange={(event) => {
                                             Object.keys(currTemp).length !== 0 && setSelTempCurr(currTemp.data.temperature[event.target.value]) 
+                                            Object.keys(currTemp).length !== 0 && setSelTimeCurr(currTemp.data.time[event.target.value])
                                         }}
                                     >
                                         <option value="">Select a Time</option>
@@ -281,6 +288,7 @@ export default function Home () {
                                         className="w-full p-3 border border-[#BF9264] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#BF9264]"
                                         onChange={(event) => {
                                             Object.keys(dataTemp).length !== 0 && setSelTempDest(dataTemp.data.temperature[event.target.value]) 
+                                            Object.keys(dataTemp).length !== 0 && setSelTimeDest(dataTemp.data.time[event.target.value])
                                         }}
                                     >
                                         <option value="">Select a Time</option>
@@ -300,7 +308,7 @@ export default function Home () {
                                 >
                                     Get Recommendation Outfit
                                 </button>
-                                <span className="block text-sm text-gray-500 mt-2">If there are changes please press again</span>
+                                <span className="block text-sm text-gray-500 mt-2">If there are changes please press again (Time in GMT)</span>
                             </form>
                         </>
                         : null
@@ -340,9 +348,33 @@ export default function Home () {
                                     </ul>
                                 </div>
 
-                                <form onSubmit={(event) => {
+                                <form onSubmit={async (event) => {
                                     event.preventDefault();
-
+                                    await dispatch(fetchPlanAdd({
+                                        "longitudeLocation": currLoc.longitude,
+                                        "latitudeLocation": currLoc.latitude,
+                                        "displayNameLocation": currLoc.city,
+                                        "longitudeDestination": dataLoc.longitude,
+                                        "latitudeDestination": dataLoc.latitude,
+                                        "displayNameDestination": dataLoc.city,
+                                        "recommendationItems" : JSON.stringify({
+                                            "dataLocation" : outfitCurr,
+                                            "dataDestination" : outfitDest
+                                        }),
+                                        "timeTemperaturePredicted" : JSON.stringify({
+                                            "dataLocation" : {
+                                                "time" : selTimeCurr,
+                                                "temperature" : selTempCurr
+                                            },
+                                            "dataDestination" : {
+                                                "time" : selTimeDest,
+                                                "temperature" : selTempDest
+                                            }
+                                        }),
+                                    })).unwrap()
+                                    
+                                    navigate('/my-plan')
+                                    
                                 }}>
                                     <button
                                         className="w-full py-3 bg-[#6F826A] text-white font-semibold rounded-lg hover:bg-[#6F826A] focus:outline-none focus:ring-2 focus:ring-[#6F826A]"
