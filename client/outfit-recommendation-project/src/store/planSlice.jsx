@@ -8,6 +8,7 @@ const planSlice = createSlice({
   initialState : {
     items : {},
     temps : {},
+    itemsGemini : {},
     loading : '',
     error : ''
   },
@@ -24,6 +25,10 @@ const planSlice = createSlice({
         state.loading = false
         state.temps = action.payload
     },
+    fetchPlanSuccessGemini(state, action) {
+        state.loading = false
+        state.itemsGemini = action.payload
+    },
     fetchPlanError(state, action) {
       state.loading = false
       state.error = action.payload
@@ -31,7 +36,7 @@ const planSlice = createSlice({
   }
 })
 
-export const { fetchPlanStart, fetchPlanSuccess, fetchPlanError, fetchPlanSuccessTemperature } = planSlice.actions
+export const { fetchPlanStart, fetchPlanSuccess, fetchPlanError, fetchPlanSuccessTemperature, fetchPlanSuccessGemini } = planSlice.actions
 export const planReducer = planSlice.reducer
 
 export const fetchPlanGetLocName = createAsyncThunk('/data/get-location-name', async (payload,{dispatch}) => {
@@ -120,5 +125,35 @@ export const fetchPlanGetTemperature = createAsyncThunk('/data/get-temperature',
             confirmButtonText: 'Close'
         })
     }
-  })
+})
+
+export const fetchPlanGetGemini = createAsyncThunk('/data/gemini', async (payload, {dispatch}) => {
+    try {
+
+
+        const response = await axios({
+            method: 'get',
+            url: 'http://localhost:3000/data/gemini',
+            params: {
+              temperature: payload.temperature
+            },
+            headers : {
+                Authorization : 'Bearer ' + localStorage.getItem("access_token")
+            }
+        });
+
+        dispatch(fetchPlanSuccessGemini(response.data))
+
+        return response.data
+
+    } catch (error) {
+
+        Swal.fire({
+            title: 'Error!',
+            text: error.response?.data?.message,
+            icon: 'error',
+            confirmButtonText: 'Close'
+        })
+    }
+})
 

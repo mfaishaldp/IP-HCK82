@@ -102,11 +102,12 @@ class DataController {
     static async getDataGemini (req,res,next) {
         try {
 
-            const {temperature} = req.body
+            const {temperature} = req.query
 
-            if (!temperature) {
+            if (!temperature || temperature === '0') {
                 throw {name : 'BadRequest', message : 'Temperature is required'}
             }
+
 
             const prompt = `
             Provide JSON data in the following format:
