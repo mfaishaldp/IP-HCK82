@@ -37,7 +37,7 @@ export const fetchUserRegister = createAsyncThunk('/register', async (payload, {
 
         const response = await axios({
             method: 'post',
-            url: 'http://localhost:3000/register',
+            url: 'https://p2-ip.mfaishaldp.my.id/register',
             data: {
                 "username" : payload.username,
                 "email" : payload.email,
@@ -66,7 +66,7 @@ export const fetchUserLogin = createAsyncThunk('/login', async (payload,{dispatc
 
         const response = await axios({
             method: 'post',
-            url: 'http://localhost:3000/login',
+            url: 'https://p2-ip.mfaishaldp.my.id/login',
             data: {
               username: payload.username,
               password: payload.password
