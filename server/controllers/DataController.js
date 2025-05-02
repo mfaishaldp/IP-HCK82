@@ -1,5 +1,5 @@
 const axios = require('axios')
-const genAi = require('../helpers/genai')
+const genAi = require('../helpers/genAi/')
 
 const API_KEY_GEOCODE = process.env.API_KEY_GEOCODE
 const API_KEY_OPEN_CAGE = process.env.API_KEY_OPEN_CAGE
