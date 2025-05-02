@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
 
-
 export default function Login () {
 
     const navigate = useNavigate()
@@ -40,6 +39,7 @@ export default function Login () {
           { theme: "outline", size: "large" }  // customization attributes
         );
         google.accounts.id.prompt(); // also display the One Tap dialog
+        // navigate('/')
     }
 
     useEffect(() => {
@@ -58,7 +58,7 @@ export default function Login () {
                         await dispatch(fetchUserLogin({
                             username : username,
                             password : password
-                        })).unwrap() //! perlu di unwrap karena ada fungsi async dan perlu di await
+                        })).unwrap()
                         navigate('/')
                     }}>
                         <h2 className="text-2xl font-bold mb-4 text-white text-center mt-4">Login</h2>
