@@ -53,7 +53,7 @@ export const fetchPlanGetLocName = createAsyncThunk('/data/get-location-name', a
     try {
         const response = await axios({
             method: 'get',
-            url: 'http://localhost:3000/data/get-location-name',
+            url: 'https://p2-ip.mfaishaldp.my.id/data/get-location-name',
             params : {
                 lat : payload.lat,
                 lon : payload.lon,
@@ -66,7 +66,6 @@ export const fetchPlanGetLocName = createAsyncThunk('/data/get-location-name', a
         dispatch(fetchPlanSuccess(response.data))
 
         return response.data
-        
 
     } catch (error) {
         console.log(error);
@@ -85,7 +84,7 @@ export const fetchPlanGetLonLat = createAsyncThunk('/data/get-lon-lat', async (p
     try {
         const response = await axios({
             method: 'get',
-            url: 'http://localhost:3000/data/get-lon-lat',
+            url: 'https://p2-ip.mfaishaldp.my.id/data/get-lon-lat',
             params : {
                 city : payload.city,
                 country : payload.country,
@@ -110,21 +109,63 @@ export const fetchPlanGetLonLat = createAsyncThunk('/data/get-lon-lat', async (p
 export const fetchPlanGetTemperature = createAsyncThunk('/data/get-temperature', async (payload, {dispatch}) => {
     try {
 
-        const response = await axios({
-            method: 'get',
-            url: 'http://localhost:3000/data/get-temperature',
-            params: {
-              latitude: payload.latitude,
-              longitude: payload.longitude
-            },
-            headers : {
-                Authorization : 'Bearer ' + localStorage.getItem("access_token")
+        // const response = await axios({
+        //     method: 'get',
+        //     url: 'https://p2-ip.mfaishaldp.my.id/data/get-temperature',
+        //     params: {
+        //       latitude: payload.latitude,
+        //       longitude: payload.longitude
+        //     },
+        //     headers : {
+        //         Authorization : 'Bearer ' + localStorage.getItem("access_token")
+        //     }
+        // });
+
+        // dispatch(fetchPlanSuccessTemperature(response.data))
+
+        // return response.data
+
+        const response = await axios ({
+            method : 'get',
+            url : 'https://api.open-meteo.com/v1/forecast?hourly=temperature_2m&forecast_days=2',
+            params : {
+                latitude : payload.latitude,
+                longitude : payload.longitude
             }
-        });
+        })
 
-        dispatch(fetchPlanSuccessTemperature(response.data))
+        const resTime = []
+        const resTemp = []
 
-        return response.data
+        
+        for (let i = 0; i < response.data.hourly.time.length; i++) { //! to get data > current datetime
+            if (new Date(response.data.hourly.time[i]) > new Date()) {
+                resTime.push(response.data.hourly.time[i])
+                resTemp.push(response.data.hourly.temperature_2m[i])
+            }
+        }
+
+        dispatch(fetchPlanSuccessTemperature({
+            latitude : Number(payload.latitude),
+            longitude : Number(payload.longitude),
+            timezone : response.data.timezone,
+            temperature_type : response.data.hourly_units.temperature_2m,
+            data : {
+                time : resTime,
+                temperature : resTemp
+            }
+        }))
+
+        return {
+            latitude : Number(payload.latitude),
+            longitude : Number(payload.longitude),
+            timezone : response.data.timezone,
+            temperature_type : response.data.hourly_units.temperature_2m,
+            data : {
+                time : resTime,
+                temperature : resTemp
+            }
+        }
 
     } catch (error) {
 
@@ -143,7 +184,7 @@ export const fetchPlanGetGemini = createAsyncThunk('/data/gemini', async (payloa
 
         const response = await axios({
             method: 'get',
-            url: 'http://localhost:3000/data/gemini',
+            url: 'https://p2-ip.mfaishaldp.my.id/data/gemini',
             params: {
               temperature: payload.temperature
             },
@@ -172,7 +213,7 @@ export const fetchPlanAdd = createAsyncThunk('/add-plan', async (payload, {dispa
 
         const response = await axios({
             method: 'post',
-            url: 'http://localhost:3000/plan/add-plan',
+            url: 'https://p2-ip.mfaishaldp.my.id/plan/add-plan',
             data: {
                 "longitudeLocation": payload.longitudeLocation,
                 "latitudeLocation": payload.latitudeLocation,
@@ -208,7 +249,7 @@ export const fetchPlanGetPlanByUserId = createAsyncThunk('/add-plan', async (pay
 
         const response = await axios({
             method: 'get',
-            url: 'http://localhost:3000/plan/user',
+            url: 'https://p2-ip.mfaishaldp.my.id/plan/user',
             headers : {
                 Authorization : 'Bearer ' + localStorage.getItem("access_token")
             }
@@ -231,7 +272,7 @@ export const fetchPlanDelPlanById = createAsyncThunk('/plan/:id', async (payload
 
         const response = await axios({
             method: 'delete',
-            url: 'http://localhost:3000/plan/'+payload.id,
+            url: 'https://p2-ip.mfaishaldp.my.id/plan/'+payload.id,
             headers : {
                 Authorization : 'Bearer ' + localStorage.getItem("access_token")
             }
@@ -252,7 +293,7 @@ export const fetchPlanPutStatus = createAsyncThunk('/plan/:id', async (payload, 
 
         const response = await axios({
             method: 'put',
-            url: 'http://localhost:3000/plan/'+payload.id,
+            url: 'https://p2-ip.mfaishaldp.my.id/plan/'+payload.id,
             data : {
                 statusId : payload.statusId
             },

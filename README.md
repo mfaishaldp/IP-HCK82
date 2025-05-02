@@ -31,7 +31,25 @@
 - **400 Bad Request**
 ```json
 {
-  "message": "Validation error message"
+  "message": "Username is required"
+}
+```
+- **400 Bad Request**
+```json
+{
+  "message": "Email is required"
+}
+```
+- **400 Bad Request**
+```json
+{
+  "message": "Email format is wrong"
+}
+```
+- **400 Bad Request**
+```json
+{
+  "message": "Password is required"
 }
 ```
 
@@ -53,6 +71,18 @@
 ```json
 {
   "access_token": "string"
+}
+```
+- **400 Bad Request**
+```json
+{
+  "message": "Username is required"
+}
+```
+- **400 Bad Request**
+```json
+{
+  "message": "Password is required"
 }
 ```
 - **401 Unauthorized**
@@ -191,7 +221,7 @@
 - **404 Not Found**
 ```json
 {
-  "message": "Plan not found"
+  "message": "Error not found"
 }
 ```
 
@@ -213,6 +243,12 @@
   "statusId": "integer"
 }
 ```
+**Request Params:**
+```json
+{
+  "id": "integer"
+}
+```
 
 **Response:**
 - **200 OK**
@@ -220,12 +256,6 @@
 {
   "id": 1,
   "StatusId": 2
-}
-```
-- **404 Not Found**
-```json
-{
-  "message": "Plan not found"
 }
 ```
 
@@ -241,17 +271,18 @@
 }
 ```
 
+**Request Params:**
+```json
+{
+  "id": "integer"
+}
+```
+
 **Response:**
 - **200 OK**
 ```json
 {
   "id": 1
-}
-```
-- **404 Not Found**
-```json
-{
-  "message": "Plan not found"
 }
 ```
 
@@ -293,6 +324,18 @@
   "message": "Please fill city"
 }
 ```
+- **400 Bad Request**
+```json
+{
+  "message": "Please fill country"
+}
+```
+- **404 Bad Request**
+```json
+{
+  "message": "Location not found"
+}
+```
 
 ---
 
@@ -330,6 +373,12 @@
   "message": "Please fill latitude"
 }
 ```
+- **400 Bad Request**
+```json
+{
+  "message": "Please fill longitude"
+}
+```
 
 ---
 
@@ -365,12 +414,6 @@
   }
 }
 ```
-- **400 Bad Request**
-```json
-{
-  "message": "Please fill latitude"
-}
-```
 
 ---
 
@@ -395,15 +438,11 @@
 - **200 OK**
 ```json
 {
-  "recommendations": [
-    {
-      "top": "T-shirt",
-      "bottom": "Shorts",
-      "outerwear": "None",
-      "footwear": "Sandals",
-      "accessories": "Sunglasses"
-    }
-  ]
+    "top": "T-shirt",
+    "bottom": "Shorts",
+    "outerwear": "None",
+    "footwear": "Sandals",
+    "accessories": "Sunglasses"
 }
 ```
 - **400 Bad Request**

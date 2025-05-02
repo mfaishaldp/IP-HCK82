@@ -17,7 +17,7 @@ export default function Login () {
         // console.log("Encoded JWT ID token: " + response.credential);
         const server = await axios({
             method: 'post',
-            url: 'http://localhost:3000/google-login',
+            url: 'https://p2-ip.mfaishaldp.my.id/google-login',
             data: {
               googleToken: response.credential
             }
