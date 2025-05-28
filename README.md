@@ -1,9 +1,10 @@
-# Individual Project Phase 2
+# ClimaWear
+### ClimaWear is an application that recommends outfits based on the weather temperature at the user's current location and can also predict the temperature at the destination the user plans to visit.
 
-# API Documentation
-
+### You can check the application video at the following link [here](https://youtu.be/KoK0ozDcjuU)
 
 ---
+# API Documentation
 
 ## Authentication
 
